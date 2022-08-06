@@ -126,14 +126,14 @@ export const View = () => {
 export async function getServerSideProps(context) {
   const session = await getSession(context);
 
-  if (!session) {
-    return {
-      redirect: {
-        permanent: false,
-        destination: "/src/user/login",
-      },
-    };
-  }
+  // if (!session) {
+  //   return {
+  //     redirect: {
+  //       permanent: false,
+  //       destination: "/src/user/login",
+  //     },
+  //   };
+  // }
 
   return {
     props: {

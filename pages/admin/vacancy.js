@@ -17,7 +17,7 @@ function Vacancy({ jobs }) {
     required: true,
     onUnauthenticated() {
       // The user is not authenticated, handle it here.
-      router.push("/");
+      // router.push("/");
     },
   });
 
@@ -42,14 +42,14 @@ export default Vacancy
 export async function getServerSideProps(context) {
   const session = await getSession(context);
 
-  if (!session) {
-    return {
-      redirect: {
-        permanent: false,
-        destination: "/src/user/login",
-      },
-    };
-  }
+  // if (!session) {
+  //   return {
+  //     redirect: {
+  //       permanent: false,
+  //       destination: "/src/user/login",
+  //     },
+  //   };
+  // }
   
   const { db } = await connectToDatabase();
    const jobs = await db

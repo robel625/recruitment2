@@ -27,23 +27,23 @@ export async function getServerSideProps(context) {
 
       console.log("user", user)
 
-  if (!user) {
-    return {
-      redirect: {
-        permanent: false,
-        destination: "/src/user/login",
-      },
-    };
-  }
+  // if (!user) {
+  //   return {
+  //     redirect: {
+  //       permanent: false,
+  //       destination: "/src/user/login",
+  //     },
+  //   };
+  // }
 
-  if (user.role !== "user" ) {
-    return {
-      redirect: {
-        permanent: false,
-        destination: "/src/user/login",
-      },
-    };
-  }
+  // if (user.role !== "user" ) {
+  //   return {
+  //     redirect: {
+  //       permanent: false,
+  //       destination: "/src/user/login",
+  //     },
+  //   };
+  // }
 
   return {
     props: {
