@@ -46,6 +46,12 @@ export default async (req, res) => {
         text: message,
       })
 
+      await sendEmail({
+        to: user.email,
+        subject: "Password Reset",
+        text: message,
+      })
+
       return res.status(200).json({
         message: `Email sent to ${user.email}, please check your email`,
       })
