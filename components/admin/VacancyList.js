@@ -203,7 +203,7 @@ function VacancyList({ jobs }) {
                    <div className="bg-white space-y-3 p-4 rounded-lg shadow">
                      <div className="flex items-center space-x-2 text-sm">
                        <div>
-                         <a href="#" class="text-blue-500 font-bold hover:underline">#1001</a>
+                         <a href="#" className="text-blue-500 font-bold hover:underline">#1001</a>
                        </div>
                        <div className="text-gray-500">10/10/2021</div>
                        <div>
