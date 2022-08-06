@@ -145,8 +145,8 @@ function VacancyList({ jobs }) {
                       <tbody className="divide-y divide-gray-100">
                          
                         {currentPosts && currentPosts.map((job) =>
-                         <tr className="bg-white">
-                           <td class="p-3 text-sm text-gray-700 whitespace-nowrap">
+                         <tr key={job._id} className="bg-white">
+                           <td className="p-3 text-sm text-gray-700 whitespace-nowrap">
                              <a href="#" className="font-bold text-blue-500 hover:underline">{job.descripition}</a>
                            </td>
                            <td className="p-3 text-md font-semibold text-gray-700 whitespace-nowrap">
@@ -184,7 +184,7 @@ function VacancyList({ jobs }) {
                    <div className="bg-white space-y-3 p-4 rounded-lg shadow ">
                      <div className="flex items-center space-x-2 text-sm">
                        <div>
-                         <a href="#" class="text-blue-500 font-bold hover:underline">#1000</a>
+                         <a href="#" className="text-blue-500 font-bold hover:underline">#1000</a>
                        </div>
                        <div className="text-gray-500">10/10/2021</div>
                        <div>
@@ -233,7 +233,7 @@ function VacancyList({ jobs }) {
                      <div className="text-sm text-gray-700">
                        Kring New Fit office chair, mesh + PU, black
                      </div>
-                     <div class="text-sm font-medium text-black">
+                     <div className="text-sm font-medium text-black">
                        $200.00
                      </div>
                    </div>
