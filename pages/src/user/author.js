@@ -1,12 +1,12 @@
 import { getSession } from "next-auth/react"
-import Wrapper from "../../../components/auth/wrapper"
+import AuthWrapper from "../../../components/auth/authWrapper"
 import HeaderAuth from "../../../components/HeaderAuth"
 const Author = () => {
   return (
-    <Wrapper>
+    <AuthWrapper>
       <HeaderAuth/>
       <h1>Author </h1>
-    </Wrapper>
+    </AuthWrapper>
   )
 }
 

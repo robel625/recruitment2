@@ -16,7 +16,7 @@ import { useRouter } from "next/router"
 import axios from "axios"
 import { toast } from "react-toastify"
 import react, { useEffect } from "react"
-import HeaderAuth from "../../../components/HeaderAuth"
+import ButtonAppBar from "../../../components/HeaderAuth"
 
 const theme = createTheme()
 
@@ -48,7 +48,7 @@ export default function EmailConfirm() {
 
   return (
     <>
-      <HeaderAuth/>
+      <ButtonAppBar/>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
