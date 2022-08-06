@@ -36,7 +36,7 @@ export async function getServerSideProps(context) {
     };
   }
 
-  if (user.role !== "admin" ) {
+  if (user.role !== "user" ) {
     return {
       redirect: {
         permanent: false,
