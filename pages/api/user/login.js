@@ -28,11 +28,11 @@ export default async (req, res) => {
           return res.status(401).json({ error: "Invalid credentials" })
         }
 
-        const { email, _id, role } = user
+        const { email, _id, role, name } = user
 
         res.status(201).json({
           token,
-          user: { email, _id, role },
+          user: { email, _id, role, name },
           message: "login successful",
         })
       }

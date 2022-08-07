@@ -40,6 +40,7 @@ function ApplicationsList() {
           config
         ) 
         setRealtimeApplicants(application.data);
+        console.log("name",application.data)
         } catch (error) {
           toast.error(error.response)
         }
