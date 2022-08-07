@@ -5,11 +5,9 @@ connectDB()
 
 export default async (req, res) => {
     if (req.method === "POST") {
-        console.log("search11")
     
         const { position1, name1, email1, status1 } = req.body
     
-        console.log("search", position1, name1, email1, status1)
     
         // try {
     
