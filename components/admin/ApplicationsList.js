@@ -40,7 +40,6 @@ function ApplicationsList() {
           config
         ) 
         setRealtimeApplicants(application.data);
-        console.log("name",application.data)
         } catch (error) {
           toast.error(error.response)
         }
@@ -87,9 +86,7 @@ function ApplicationsList() {
         Authorization: `Bearer ${cookies?.token}`
       }}
       ) 
-      console.log('application2', application2)
       setRealtimeApplicants(application2.data);
-      console.log('application2.data', application2.data)
     }
 
 

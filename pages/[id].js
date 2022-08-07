@@ -12,6 +12,7 @@ import { parseCookies } from "nookies"
 import { toast } from "react-toastify"
 import Grid from "@mui/material/Grid"
 import FileBase from "react-file-base64"
+import { useRouter } from "next/router";
 
 const Jobdesc = ({ job }) => {
   const theme = 'bubble';
@@ -21,7 +22,7 @@ const Jobdesc = ({ job }) => {
     //const [selectedFile, setSelectedFile] = useState("")
     const cookies = parseCookies()
 
-    // console.log(selectedFile)
+  const router = useRouter();
 
   const user = cookies?.user
     ? JSON.parse(cookies.user)
@@ -39,7 +40,21 @@ const Jobdesc = ({ job }) => {
 
     const updateJobSeeker = async (e) => {
       e.preventDefault();
+
+      if (!user) {
+       const answer = confirm('login')
+
+       answer && router.push("/src/user/login") 
+          // return {
+          //   redirect: {
+          //     permanent: false,
+          //     destination: "/src/user/login",
+          //   },
+          // };
+        }
+     else{
       try {
+        console.log("passed")
         const config = {
           headers: {
             "Content-Type": "application/json",
@@ -57,6 +72,7 @@ const Jobdesc = ({ job }) => {
       } catch (error) {
         toast.error(error.response.data.error)
       }
+    }
     }
 
   //   const profile = useSelector((state) => state.profile)
