@@ -92,7 +92,10 @@ function Header() {
             <a><HeaderLink Icon={HomeRoundedIcon} text="Home" feed hidden
                            active={router.pathname == "/" ? "active" : ""}/></a>
             </Link>
-            <HeaderLink Icon={BusinessCenterIcon} text="Latest Jobs" feed hidden />
+            <Link href="/profile">
+            <a><HeaderLink Icon={BusinessCenterIcon} text="Latest Jobs" feed hidden
+                            active={router.pathname == "/profile" ? "active" : ""} /></a>
+            </Link>
             <HeaderLink Icon={ContactPageIcon} text="Contact" feed  hidden/>
             <div className='md:ml-8'>
             <div className={ `bg-gray-600 flex item-center  px-0.5 rounded-full h-6 w-12 cursor-pointer flex-shrink-0 relative 

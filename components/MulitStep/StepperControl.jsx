@@ -2,50 +2,60 @@ import { useDeprecatedAnimatedState } from "framer-motion";
 import { useStepperContext } from "../../contexts/StepperContext";
 import { useSession } from "next-auth/react";
 import {  useContext } from "react";
+import axios from "axios" 
+import { parseCookies } from "nookies"
 
 export default function StepperControl({ handleClick, currentStep, steps }) {
   const { userData, setUserData } = useStepperContext();
   const { data: session } = useSession();
 
+  const cookies = parseCookies()
+
+  const user = cookies?.user
+    ? JSON.parse(cookies.user)
+    : session?.user
+    ? session?.user
+    : ""
+
   const uploadUser = async (e) => {
     e.preventDefault();
+    const user_id = user._id
+    const full_name = userData.fullName
+    const user_email = userData.email
+    const phone = userData.phone
+    const gender = userData.gender
+    const birthdate = userData.birthdate
+    const country = userData.country
+    const region = userData.region
+    const city = userData.city
+    const institute = userData.school
+    const study = userData.study
+    const degree = userData.degree
+    const cgpa = userData.gpa
+    const study_from = userData.from_year
+    const study_to = userData.to_year
+    const job_title = userData.job_title
+    const job_specialization = userData.job_specialization
+    const company = userData.company
+    const industry = userData.industry
+    const job_from = userData.job_from
+    const job_to = userData.job_to
+
+    console.log('ffull_Name ,email',user_id  )
+
+        const config = {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
     
-    const response = await fetch("/api/jobs/jobSeekers", {
-      method: "POST",
-      body: JSON.stringify({
-        Full_Name: userData.fullName,
-        user_email: userData.email,
-        phone:userData.phone,
-        gender:userData.gender,
-        Birthdate:userData.birthdate,
-        country:userData.country,
-        region:userData.region,
-        city:userData.city,
-        school:userData.school,
-        study:userData.study,
-        degree:userData.degree,
-        gpa:userData.gpa,
-        from_year:userData.from_year,
-        to_year:userData.to_year,
-        job_title:userData.job_title,
-        job_specialization:userData.job_specialization,
-        company:userData.company,
-        industry:userData.industry,
-        job_from:userData.job_from,
-        job_to:userData.job_to,
+    const response = await axios.post(`/api/admin/userinfo`,
+    { user_id, full_name, user_email, phone ,gender ,birthdate ,country ,region ,city , institute,
+      study ,degree ,cgpa ,study_from ,study_to ,job_title ,job_specialization, 
+     company ,industry ,job_from ,job_to },config);
 
-        sessionUsername: session.user.name,
-        sessionEmail: session.user.email,
-        sessionUserImg: session.user.image,
-        sessionUserId: session.user.id,
-        createdAt: new Date().toString(),
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-
-    const responseData = await response.json();
+    
+    // const responseData = await response.json();
      
 
     handleClick("next");
