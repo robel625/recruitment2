@@ -102,7 +102,7 @@ export default function RecentJob() {
         <div className="mt-3 h-6 text-xs font-bold uppercase leading-8 text-gray-500">
           To:
         </div>
-        <input type="checkbox" value={userData["current_working"] || ""} id="current_working" name="current_working" onchange="toggleElement(this)" />
+        <input type="checkbox" value={userData["current_working"] || ""} id="current_working" name="current_working" onChange="toggleElement(this)" />
         <label htmlFor="current_job"> I currently work here</label>
         <div className="my-2 flex rounded border border-gray-200 bg-white p-1">
           <input
