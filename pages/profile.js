@@ -6,7 +6,7 @@ import { parseCookies } from "nookies"
 import { toast } from "react-toastify"
 import { useSession } from "next-auth/react";
 
-function profile() {
+function Profile() {
   const cookies = parseCookies()
   const { data: session } = useSession();
 
@@ -400,4 +400,4 @@ function profile() {
   )
 }
 
-export default profile
+export default Profile
