@@ -74,7 +74,7 @@ function Header() {
     <div className='bg-white  dark:bg-black shadow-md w-full fixed top-0 left-0'>
        <div className=' md:flex items-center justify-between  py-4 md:px-10 px-7'>
           <div className="flex items-center space-x-2 ">
-               <Image src="./../public/assets/eeuLogo.png" width={45} height={45} />
+               <Image src="/../public/assets/eeuLogo.png" width={45} height={45} />
                <div className="font-bold text-2xl cursor-pointer font-[Poppins] 
              text-gray-800 dark:!text-white">
                  <h4>EEU</h4>

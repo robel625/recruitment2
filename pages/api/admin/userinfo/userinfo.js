@@ -1,5 +1,5 @@
-import connectDB from "../../../connectDB"
-import Userinfo from "../../../model/userinfoModel"
+import connectDB from "../../../../connectDB"
+import Userinfo from "../../../../model/userinfoModel"
 
 connectDB()
 
