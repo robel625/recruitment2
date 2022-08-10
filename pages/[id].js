@@ -1,5 +1,5 @@
 import { useQuill } from 'react-quilljs';
-import 'quill/dist/quill.snow.css'; 
+import 'quill/dist/quill.bubble.css';
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { connectToDatabase } from "../util/mongodb";
