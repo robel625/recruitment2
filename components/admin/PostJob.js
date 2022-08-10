@@ -43,7 +43,7 @@ function PostJob({ handleClose }) {
             "Content-Type": "application/json",
           },
         }
-         const desc = quillRef.current.firstChild.innerHTML
+         const desc = quill.root.innerHTML
         const { data } = await axios.post(
           `/api/admin/job`,
           { position, avalablity, status, miniDesc, desc, userid },

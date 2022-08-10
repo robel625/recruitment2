@@ -3,6 +3,7 @@ import { useRecoilState } from "recoil";
 import { modalState, modalTypeState } from "../../atoms/modalAtom";
 import { useEffect, useState } from "react";
 import { handlePostState, useSSRPostsState } from "../../atoms/postAtom";
+import Link from 'next/link';
 
 import FrontPaginate from "./FrontPaginate";
 
@@ -162,7 +163,9 @@ function VacancyList({ jobs }) {
                            </span>)}
                            </td>
                            <td className="p-3 text-sm text-gray-700 whitespace-nowrap">
-                                <button className='ml-1 p-1.5 text-xs font-medium uppercase tracking-wider text-blue-800 bg-blue-200 rounded-md'>View</button>
+                                <Link href={`/${job._id}`}>
+                                    <button className='ml-1 p-1.5 text-xs font-medium uppercase tracking-wider text-blue-800 bg-blue-200 rounded-md'>View</button>
+                                </Link>
                                 <button className='ml-1 p-1.5 text-xs font-medium uppercase tracking-wider text-blue-800 bg-blue-200 rounded-md'>Edit</button>
                                 <button   onClick={() => deletePost(job)}
                                  className='ml-1 p-1.5 text-xs font-medium uppercase tracking-wider text-red-800 bg-red-200 rounded-md'>Delete</button>

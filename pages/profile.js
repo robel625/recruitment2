@@ -16,12 +16,8 @@ function Profile() {
     ? session?.user
     : ""
 
-  const [status_label, setStatuslabel] = useState("");
   const [userinfo, setUserinfo] = useState("");
-  const [close, setClose] = useState(true)
-  const [statusid, setStatusid] = useState("")
-
-  console.log("userinfo",userinfo)
+  
   useEffect(() => {
     const fetchPosts = async () => {
       try {
@@ -36,7 +32,7 @@ function Profile() {
         `/api/admin/userinfo/${user_id}`,
         config
       ) 
-       
+
       setUserinfo(response.data);
       } catch (error) {
         toast.error(error.response)
@@ -45,27 +41,60 @@ function Profile() {
     fetchPosts();
   }, []);
 
-  // const uploadStatus = async (e) => {
-  //   e.preventDefault();
-  //   // try {
-  //     const config = {
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //         Authorization: `Bearer ${cookies?.token}`
-  //       },
-  //     }
 
-  //     const { data } = await axios.post(
-  //       `/api/admin/statusForm/status`,
-  //       { status_label },
-  //       config
-  //     )
+  const updateUserinfo = async () => {
+    try {
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${cookies?.token}`
+        },
+      }
+   
+      const user_id = user._id
+      const full_name = userinfo.full_name
+      const user_email = userinfo.user_email
+      const phone = userinfo.phone
+      const gender = userinfo.gender
+      const birthdate = userinfo.birthdate
+      const country = userinfo.country
+      const region = userinfo.region
+      const city = userinfo.city
+      const institute = userinfo.institute
+      const study = userinfo.study
+      const degree = userinfo.degree
+      const cgpa = userinfo.cgpa
+      const study_from = userinfo.study_from
+      const study_to = userinfo.study_to
+      const job_title = userinfo.job_title
+      const job_specialization = userinfo.job_specialization
+      const company = userinfo.company
+      const industry = userinfo.industry
+      const job_from = userinfo.job_from
+      const job_to = userinfo.job_to
 
-  //     toast.success(data.message)
-  //   // } catch (error) {
-  //   //   toast.error(error.response)
-  //   // }
-  // }
+      
+      
+      const { data } = await axios.post(
+        `/api/admin/userinfo/${user_id}`,
+        {     full_name, user_email, phone ,gender ,birthdate ,country ,region ,city , institute,
+               study ,degree ,cgpa ,study_from ,study_to ,job_title ,job_specialization, 
+                company ,industry ,job_from ,job_to },
+        config
+      )
+
+      toast.success(data.message)
+    } catch (error) {
+      toast.error(error.response.data.error)
+    }
+  }
+
+  const handleInput = (e) => {
+    // console.log(e.target.name, " : ", e.target.value);
+    setUserinfo({ ...userinfo, [e.target.name]: e.target.value });
+  };
+
+  
 
   return (
     <div>
@@ -93,23 +122,27 @@ function Profile() {
           <div className="px-4 py-5 bg-white sm:p-6">
             <div className="grid grid-cols-6 gap-6">
               <div className="col-span-6 sm:col-span-4">
-                <label htmlFor="first-name" className="block text-sm font-medium text-gray-700">Full name</label>
-                <input value={userinfo.full_name} type="text" name="first-name" id="first-name" autoComplete="given-name" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"/>
+                <label htmlFor="full_name" className="block text-sm font-medium text-gray-700">Full name</label>
+                <input value={userinfo.full_name}  onChange={handleInput}
+                   type="text" name="full_name" id="full_name" autoComplete="given-name" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"/>
               </div>
 
               <div className="col-span-6 sm:col-span-3">
-                <label htmlFor="email-address" className="block text-sm font-medium text-gray-700">Email address</label>
-                <input value={userinfo.user_email} type="text" name="email-address" id="email-address" autoComplete="email" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"/>
+                <label htmlFor="user_email" className="block text-sm font-medium text-gray-700">Email address</label>
+                <input value={userinfo.user_email} onChange={handleInput}
+                  type="text" name="user_email" id="user_email" autoComplete="email" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"/>
               </div>
 
               <div className="col-span-6 sm:col-span-3">
-                <label htmlFor="phone-number" className="block text-sm font-medium text-gray-700">Phone number</label>
-                <input value={userinfo.phone} type="text" name="phone-number" id="phone-number" autoComplete="phone" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"/>
+                <label htmlFor="phone" className="block text-sm font-medium text-gray-700">Phone number</label>
+                <input value={userinfo.phone} onChange={handleInput}
+                  type="text" name="phone" id="phone" autoComplete="phone" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"/>
               </div>
 
               <div className="col-span-6 sm:col-span-3">
                 <label htmlFor="gender" className="block text-sm font-medium text-gray-700">Gender</label>
-                <select value={userinfo.gender} id="gender" name="gender" autoComplete="gender-type" className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                <select value={userinfo.gender} onChange={handleInput}
+                   id="gender" name="gender" autoComplete="gender-type" className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                   <option value="" disabled selected hidden>Gender:</option>
                   <option value='Mail'>Mail</option>
                   <option value='Femail'>Female</option>
@@ -117,23 +150,27 @@ function Profile() {
               </div>
 
               <div className="col-span-6 sm:col-span-3">
-                <label htmlFor="date-number" className="block text-sm font-medium text-gray-700">DATE OF BIRTH</label>
-                <input value={userinfo.birthdate} type="Date" name="phone-number" id="date-number" autoComplete="date" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"/>
+                <label htmlFor="birthdate" className="block text-sm font-medium text-gray-700">DATE OF BIRTH</label>
+                <input value={userinfo.birthdate}  onChange={handleInput}
+                  type="Date" name="birthdate" id="birthdate" autoComplete="birthdate" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"/>
               </div>
 
               <div className="col-span-6 sm:col-span-3">
                 <label htmlFor="country" className="block text-sm font-medium text-gray-700">Country</label>
-                <input value={userinfo.country} type="text" name="country" id="country" autoComplete="country-name" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"/>
+                <input value={userinfo.country} onChange={handleInput}
+                  type="text" name="country" id="country" autoComplete="country-name" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"/>
               </div>
 
               <div className="col-span-6 sm:col-span-3">
                 <label htmlFor="region" className="block text-sm font-medium text-gray-700">Region</label>
-                <input value={userinfo.region} type="text" name="region" id="region" autoComplete="region-name" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"/>
+                <input value={userinfo.region} onChange={handleInput} 
+                type="text" name="region" id="region" autoComplete="region-name" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"/>
               </div>
 
               <div className="col-span-6 sm:col-span-6 lg:col-span-2">
                 <label htmlFor="city" className="block text-sm font-medium text-gray-700">City</label>
-                <input value={userinfo.city} type="text" name="city" id="city" autoComplete="address-level2" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"/>
+                <input value={userinfo.city} onChange={handleInput}
+                 type="text" name="city" id="city" autoComplete="address-level2" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"/>
               </div>
 
               <div className="col-span-6">
@@ -152,9 +189,9 @@ function Profile() {
               </div>
             </div>
           </div>
-          <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
-            <button type="submit" className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Save</button>
-          </div>
+          {/* <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
+            <button type="submit" onClick={() => updateUserinfo()}   className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Save</button>
+          </div> */}
         </div>
       </form>
     </div>
@@ -182,18 +219,21 @@ function Profile() {
           <div className="px-4 py-5 bg-white sm:p-6">
             <div className="grid grid-cols-6 gap-6">
               <div className="col-span-6 sm:col-span-3">
-                <label htmlFor="Institute-name" className="block text-sm font-medium text-gray-700">School or Institute</label>
-                <input value={userinfo.institute}  type="text" name="Institute-name" id="Institute-name" autoComplete="Institute" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"/>
+                <label htmlFor="institute" className="block text-sm font-medium text-gray-700">School or Institute</label>
+                <input value={userinfo.institute}  onChange={handleInput}
+                  type="text" name="institute" id="institute" autoComplete="institute" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"/>
               </div>
 
               <div className="col-span-6 sm:col-span-3">
-                <label htmlFor="study-name" className="block text-sm font-medium text-gray-700">Field of study</label>
-                <input value={userinfo.study} type="text" name="study-name" id="study-name" autoComplete="study-name" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"/>
+                <label htmlFor="study" className="block text-sm font-medium text-gray-700">Field of study</label>
+                <input value={userinfo.study} onChange={handleInput}
+                  type="text" name="study" id="study" autoComplete="study-name" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"/>
               </div>
 
               <div className="col-span-6 sm:col-span-3">
                 <label htmlFor="degree" className="block text-sm font-medium text-gray-700">Degree</label>
-                <select value={userinfo.degree} id="degree" name="degree" autoComplete="degree" className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                <select value={userinfo.degree} onChange={handleInput}
+                 id="degree" name="degree" autoComplete="degree" className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                     <option value="" disabled selected hidden>Select:</option>
 										<option value="Diploma degree">Diploma degree</option>
 										<option value="Bachelor/s degree">Bachelors degree</option>
@@ -207,13 +247,15 @@ function Profile() {
               </div>
 
               <div className="col-span-6 sm:col-span-2">
-                <label htmlFor="CGPA" className="block text-sm font-medium text-gray-700">CGPA</label>
-                <input value={userinfo.cgpa} type="text" name="CGPA" id="CGPA" autoComplete="CGPA" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"/>
+                <label htmlFor="cgpa" className="block text-sm font-medium text-gray-700">CGPA</label>
+                <input value={userinfo.cgpa} onChange={handleInput}
+                  type="text" name="cgpa" id="cgpa" autoComplete="cgpa" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"/>
               </div>
 
               <div className="col-span-6 sm:col-span-3">
-                <label htmlFor="from_year" className="block text-sm font-medium text-gray-700">From year:</label>
-                <select value={userinfo.study_from} id="from_year" name="from_year" autoComplete="from_year" className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                <label htmlFor="study_from" className="block text-sm font-medium text-gray-700">From year:</label>
+                <select value={userinfo.study_from} onChange={handleInput}
+                 id="study_from" name="study_from" autoComplete="study_from" className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                        <option value="" disabled selected hidden>From year:</option>
 										   <option value="2026">2026</option><option value="2025">2025</option><option value="2024">2024</option><option value="2023">2023</option>
 										   <option value="2022">2022</option><option value="2021">2021</option><option value="2020">2020</option><option value="2019">2019</option>
@@ -236,8 +278,9 @@ function Profile() {
               </div>
 
               <div className="col-span-6 sm:col-span-3">
-                <label htmlFor="to_year" className="block text-sm font-medium text-gray-700">To year (or expected)</label>
-                <select value={userinfo.study_to} id="to_year" name="to_year" autoComplete="to_year" className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                <label htmlFor="study_to" className="block text-sm font-medium text-gray-700">To year (or expected)</label>
+                <select value={userinfo.study_to} onChange={handleInput}
+                  id="study_to" name="study_to" autoComplete="study_to" className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                        <option value="" disabled selected hidden>To year (or expected)</option>
 										   <option value="2026">2026</option><option value="2025">2025</option><option value="2024">2024</option><option value="2023">2023</option>
 										   <option value="2022">2022</option><option value="2021">2021</option><option value="2020">2020</option><option value="2019">2019</option>
@@ -261,9 +304,9 @@ function Profile() {
 
             </div>
           </div>
-          <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
-            <button type="submit" className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Save</button>
-          </div>
+          {/* <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
+            <button type="submit"  onClick={() => updateUserinfo()}  className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Save</button>
+          </div> */}
         </div>
       </form>
     </div>
@@ -291,12 +334,14 @@ function Profile() {
             <div className="grid grid-cols-6 gap-6">
               <div className="col-span-6 sm:col-span-4">
                 <label htmlFor="job_title" className="block text-sm font-medium text-gray-700">Job Title</label>
-                <input value={userinfo.job_title} type="text" name="job_title" id="job_title" autoComplete="job_title" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"/>
+                <input value={userinfo.job_title} onChange={handleInput}
+                  type="text" name="job_title" id="job_title" autoComplete="job_title" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"/>
               </div>
 
               <div className="col-span-6 sm:col-span-4">
                 <label htmlFor="job_specialization" className="block text-sm font-medium text-gray-700">Job_specialization</label>
-                <select value={userinfo.job_specialization} id="Job_specialization" name="Job_specialization" autoComplete="job_specialization" className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                <select value={userinfo.job_specialization} onChange={handleInput}
+                  id="job_specialization" name="job_specialization" autoComplete="job_specialization" className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                     <option value="" disabled selected hidden>Job specialization:</option>
                     <option value="Administrative">Administrative</option><option value="Banking / Finance / Insurance">Banking / Finance / Insurance</option><option value="Building Design / Architecture">Building Design / Architecture</option>
 		            	  <option value="Construction / Building">Construction / Building</option><option value="Consulting/Business Strategy & Planning">Consulting/Business Strategy &amp; Planning</option><option value="Customer Service">Customer Service</option>
@@ -311,12 +356,14 @@ function Profile() {
 
               <div className="col-span-6 sm:col-span-4">
                 <label htmlFor="company" className="block text-sm font-medium text-gray-700">Institute or Company name</label>
-                <input value={userinfo.company} type="text" name="company" id="company" autoComplete="company name" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"/>
+                <input value={userinfo.company}  onChange={handleInput}
+                 type="text" name="company" id="company" autoComplete="company name" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"/>
               </div>
 
               <div className="col-span-6 sm:col-span-4">
                 <label htmlFor="industry" className="block text-sm font-medium text-gray-700">Industry</label>
-                <select value={userinfo.industry} id="industry" name="industry" autoComplete="industry" className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                <select value={userinfo.industry} onChange={handleInput}
+                 id="industry" name="industry" autoComplete="industry" className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                     <option value="" disabled selected hidden>Industry:</option>
                     <option value="Agriculture / Poultry / Fishing">Agriculture / Poultry / Fishing</option><option value="Banking / Financial Services">Banking / Financial Services</option>
 		            		<option value="Construction / Real Estate">Construction / Real Estate</option><option value="Consulting">Consulting</option><option value="Creatives / Art / Design">Creatives / Art / Design</option>
@@ -331,8 +378,9 @@ function Profile() {
               </div>
 
               <div className="col-span-6 sm:col-span-3">
-                <label htmlFor="jobfrom_year" className="block text-sm font-medium text-gray-700">From year:</label>
-                <select value={userinfo.job_from} id="jobfrom_year" name="jobfrom_year" autoComplete="jobfrom_year" className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                <label htmlFor="job_from" className="block text-sm font-medium text-gray-700">From year:</label>
+                <select value={userinfo.job_from} onChange={handleInput}
+                  id="job_from" name="job_from" autoComplete="jobfrom_year" className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                        <option value="" disabled selected hidden>From year:</option>
 										   <option value="2026">2026</option><option value="2025">2025</option><option value="2024">2024</option><option value="2023">2023</option>
 										   <option value="2022">2022</option><option value="2021">2021</option><option value="2020">2020</option><option value="2019">2019</option>
@@ -355,8 +403,9 @@ function Profile() {
               </div>
 
               <div className="col-span-6 sm:col-span-3">
-                <label htmlFor="jobto_year" className="block text-sm font-medium text-gray-700">To year</label>
-                <select value={userinfo.job_to}  id="jobto_year" name="jobto_year" autoComplete="jobto_year" className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                <label htmlFor="job_to" className="block text-sm font-medium text-gray-700">To year</label>
+                <select value={userinfo.job_to} onChange={handleInput}
+                  id="job_to" name="job_to" autoComplete="jobto_year" className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                        <option value="" disabled selected hidden>To year:</option>
 										   <option value="2026">2026</option><option value="2025">2025</option><option value="2024">2024</option><option value="2023">2023</option>
 										   <option value="2022">2022</option><option value="2021">2021</option><option value="2020">2020</option><option value="2019">2019</option>
@@ -380,20 +429,25 @@ function Profile() {
 
               <div className="col-span-6 sm:col-span-2">
                 <label htmlFor="here" className="block text-sm font-medium text-gray-700">I currently work here</label>
-                <input type="checkbox" name="here" id="here"/>
+                <input type="checkbox"  
+                //  onChange={(e) => setJob_to(e.target.checked)} 
+                 name="here" id="here"/>
               </div>
 
             </div>
           </div>
-          <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
-            <button type="submit" className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Save</button>
-          </div>
+          {/* <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
+            <button type="submit" onClick={() => updateUserinfo()}  className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Save</button>
+          </div> */}
         </div>
       </form>
     </div>
   </div>
 </div>
 
+<div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
+            <button onClick={() => updateUserinfo()}   className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Save</button>
+  </div>
 
       
     </div>
