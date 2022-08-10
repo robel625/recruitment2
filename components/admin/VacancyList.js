@@ -7,12 +7,12 @@ import Link from 'next/link';
 
 import FrontPaginate from "./FrontPaginate";
 
-import { useQuill } from 'react-quilljs';
-import 'quill/dist/quill.snow.css'; 
+// import { useQuill } from 'react-quilljs';
+// import 'quill/dist/quill.snow.css'; 
 import DOMPurify from "dompurify";
 
 function VacancyList({ jobs }) {
-  const { quill, quillRef } = useQuill();
+  // const { quill, quillRef } = useQuill();
   const [modalOpen, setModalOpen] = useRecoilState(modalState);
   const [modalType, setModalType] = useRecoilState(modalTypeState);
   const [realtimePosts, setRealtimePosts] = useState([]);
