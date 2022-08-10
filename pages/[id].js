@@ -188,8 +188,15 @@ const Jobdesc = ({ job }) => {
                          <div >Salary</div>
                          <div>10000 Birr</div>
                     </div>
+
+                    <div>
+               <div ref={quillRef}/>
+               </div>
+               
                 </div>
-                <div>
+
+                
+                {/* <div>
                     <div>
                          <h2> Job Description
                         </h2>
@@ -223,7 +230,7 @@ const Jobdesc = ({ job }) => {
                          <p>Lorem ipsum dolor sit amet.</p>
                          <p>Lorem ipsum dolor sit amet.</p>
                     </div>
-                </div>
+                </div> */}
                 
                 <div className='p-3 flex items-center justify-between bg-amber-700'>
               <div className='flex items-center flex-1'>
@@ -241,9 +248,7 @@ const Jobdesc = ({ job }) => {
            </div>
               
               
-              <div>
-               <div ref={quillRef}/>
-               </div>
+             
                
            
                 

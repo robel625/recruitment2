@@ -14,13 +14,7 @@ import { handlePostState } from "../../atoms/postAtom";
 import { parseCookies } from "nookies"
 
 function PostJob({ handleClose }) {
-    // const { quill, quillRef } = useQuill();
-    const { quillRef } = useQuill({
-      modules: {
-        toolbar: '#toolbar'
-      },
-      formats: ["size", "bold", "script"], // Important
-    });
+    const { quill, quillRef } = useQuill();
     const [position, setPosition] = useState("");
     const [miniDesc, setMiniDesc] = useState("");
     const [status, setStatus] = useState("");
@@ -49,7 +43,7 @@ function PostJob({ handleClose }) {
             "Content-Type": "application/json",
           },
         }
-         const desc = quillRef.current.firstChild.innerHTML
+         const desc = quill.root.innerHTML
         const { data } = await axios.post(
           `/api/admin/job`,
           { position, avalablity, status, miniDesc, desc, userid },
@@ -114,24 +108,11 @@ function PostJob({ handleClose }) {
                onChange={(e) => setMiniDesc(e.target.value)}>
             </textarea>
             <h4>Descripition</h4>
-            
-            <div style={{ width: 500, height: 300 }}>
-      <div ref={quillRef} />
-
-      <div id="toolbar">
-        <select className="ql-size">
-          <option value="small" />
-          <option selected />
-          <option value="large" />
-          <option value="huge" />
-        </select>
-        <button className="ql-bold" />
-        <button className="ql-script" value="sub" />
-        <button className="ql-script" value="super" />
-      </div>
-      <div id="editor" />
-    </div>
-
+            <div style={{ width: 500, height: 150 }} className='bg-white'>
+               <div ref={quillRef}
+                 value={quill}
+                 />
+           </div>
            <div className="mt-20">cancle</div>
             <div>
                 <button
