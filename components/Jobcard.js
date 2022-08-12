@@ -3,7 +3,7 @@ import TimeAgo from "timeago-react";
 
 function Jobcard({ job }) {
 
-  console.log(job.posted)
+  
   return (
     <div className='bg-white dark:bg-[#1D2226] p-3 rounded-lg space-y-2 w-11/12 overflow-hidden border border-gray-300 dark:border-none'>
       <div className='flex items-center  justify-between'>
@@ -17,17 +17,17 @@ function Jobcard({ job }) {
       <hr/>
       <div className=''>
          <div className='flex flex-col pb-3'>
-             <span className=''>company: {job.company}</span>
-             <span className=''>plase: {job.place}</span>
+             <span className=''>company: {job.company_name}</span>
+             <span className=''>place: {job.location}</span>
              <span className=''>level: {job.level}</span>
-             <span>date: <TimeAgo
-            datetime={job.date}
+             <span>deadline: <TimeAgo
+            datetime={job.deadline}
             className="text-xs dark:text-white/75 opacity-80"
           /></span>
              
          </div>
          <div className='px-2.5 md:break-normal'>
-             <p>{job.desc}
+             <p>{job.miniDesc}
             </p>
           </div>
       </div>

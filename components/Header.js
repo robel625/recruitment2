@@ -1,5 +1,6 @@
 
 import Image from 'next/image'
+import logo from './assets/eeuLogo.png'
 import HeaderLink from './HeaderLink'
 import GroupIcon from "@mui/icons-material/Group";
 import BusinessCenterIcon from "@mui/icons-material/BusinessCenter";
@@ -74,10 +75,12 @@ function Header() {
     <div className='bg-white  dark:bg-black shadow-md w-full fixed top-0 left-0'>
        <div className=' md:flex items-center justify-between  py-4 md:px-10 px-7'>
           <div className="flex items-center space-x-2 ">
-               <Image src="/../public/assets/eeuLogo.png" width={45} height={45} />
-               <div className="font-bold text-2xl cursor-pointer font-[Poppins] 
+               {/* <Image src="/../public/assets/eeuLogo.png" width={45} height={45} /> */}
+               <Image src={logo} width={45} height={45} />
+               <div className="font-bold text-2xl cursor-pointer  
              text-gray-800 dark:!text-white">
                  <h4>EEU</h4>
+                 {/* font-[Poppins] */}
                </div>
           </div>
 

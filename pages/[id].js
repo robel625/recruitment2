@@ -140,7 +140,7 @@ const Jobdesc = ({ job }) => {
               <div className='flex items-center flex-1'>
                  <a onClick={updateJobSeeker } href="#" className='bg-yellow-500 rounded-lg text-white mt-5 p-3'>Apply Now</a>
                  <span className='text-red-600'>Deadline
-                 <br/>Jun 23, 2022</span>
+                 <br/>{job.deadline}</span>
               </div>
               <div className='flex justify-around w-2/3'>
                 <div className=''>share:</div>
@@ -165,28 +165,28 @@ const Jobdesc = ({ job }) => {
               </form>
             <div>
                   <h1 className='ml-5'>{job.position} </h1>
-                  <span className='mr-10 text-gray-700'>Job by Safaricom Telecommunications Ethiopia PLC </span>
+                  <span className='mr-10 text-gray-700'>{job.company_name}</span>
                   <span className=''>Job Id: 
-                     <span className='text-gray-700'> 401545 </span >
+                     <span className='text-gray-700'>{job.jobid}</span >
                   </span>
             </div>
                 <hr/>
                <div >
                    <div  className='flex m-0.5 p-1'>
-                         <div>Category</div>
-                         <div>Engineering, Telecommunications</div>
+                         <div>Category :</div>
+                         <span>Engineering, Telecommunications</span>
                     </div>
-                    <div>
-                         <div>Location:</div>
-                         <div>Addis Ababa</div>
+                    <div className='flex m-0.5 p-1'>
+                         <div>Location :</div>
+                         <span>{job.location}</span>
                     </div>
-                    <div> 
-                         <div>category</div>
-                         <div >Mid Level (2+ -5 years experience)</div>
+                    <div className='flex m-0.5 p-1'> 
+                         <div>level :</div>
+                         <span >{job.level}</span>
                     </div>
-                    <div >
-                         <div >Salary</div>
-                         <div>10000 Birr</div>
+                    <div className='flex m-0.5 p-1' >
+                         <div >Salary :</div>
+                         <span>{job.salary}</span>
                     </div>
 
                     <div/>
@@ -232,20 +232,7 @@ const Jobdesc = ({ job }) => {
                     </div>
                 </div> */}
                 
-                <div className='p-3 flex items-center justify-between bg-amber-700'>
-              <div className='flex items-center flex-1'>
-                 <a href="#" className='bg-yellow-500 rounded-lg text-white mt-5 p-3'>Apply Now</a>
-                 <span className='text-red-600'>Deadline
-                 <br/>Jun 23, 2022</span>
-              </div>
-              <div className='flex justify-around w-2/3'>
-                <div className=''>share:</div>
-                <div className='p-0.5 border border-solid border-black'>f</div>
-                <div className='p-0.5 border border-solid border-black'>t</div>
-                <div className='p-0.5 border border-solid border-black'>in</div>
-                <div className='p-0.5 border border-solid border-black'>t</div>
-              </div>
-           </div>
+                
               
               
              
@@ -275,12 +262,18 @@ export const getServerSideProps = async (req) => {
       props: {
         job : 
         {_id: job._id.toString(),
-        position: job.position,
-        availability: job.availability,
-        status:job.status,
-        miniDesc: job.miniDesc,
-        descripition: job.descripition,
-        // posted: job.createdAt
+          jobid:job.jobid,
+          position:job.position,
+          company_name:job.company_name,
+          status:job.status,
+          location:job.location,
+          availability:job.availability,
+          level:job.level,
+          salary:job.salary,
+          deadline:job.deadline,
+          miniDesc: job.miniDesc,
+          descripition: job.descripition,
+          posted: job.createdAt.toString()
         }
       },
     };
