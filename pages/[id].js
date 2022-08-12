@@ -102,7 +102,7 @@ const Jobdesc = ({ job }) => {
     useEffect(() => {
         if (quill) {
           // quill.clipboard.dangerouslyPasteHTML('<h1> TiTle</h1><ol><li>asdfasdf oreder list</li><li>sadfaf</li><li>asdfas</li></ol><p>asdfjhaslkjdfhajkshdfkjh pargtaph</p><h2> Responcebility</h2><ul><li>unorderlist</li><li>sdfsd</li><li>asdfsa</li></ul><h3> color</h3><p><strong style="background-color: rgb(0, 138, 0);">asdfasfasdfasdfsdfasdfasdfsfadf</strong></p><p><span style="color: rgb(178, 178, 0);">asdfsdfasddaasdfasdfasdfasdfadf</span></p><p><u style="color: rgb(178, 178, 0);">aasdfasdfasfadfsfaasfdfasfasfd</u></p>');
-          quill.clipboard.dangerouslyPasteHTML(job.discripition);
+          quill.clipboard.dangerouslyPasteHTML(job.descripition);
         }
       }, [quill]);
 
@@ -189,9 +189,9 @@ const Jobdesc = ({ job }) => {
                          <div>10000 Birr</div>
                     </div>
 
-                    <div>
-               <div ref={quillRef}/>
-               </div>
+                    <div/>
+                       <div ref={quillRef} >
+                    </div>
                
                 </div>
 
@@ -276,10 +276,10 @@ export const getServerSideProps = async (req) => {
         job : 
         {_id: job._id.toString(),
         position: job.position,
-        avalablity: job.avalablity,
+        availability: job.availability,
         status:job.status,
         miniDesc: job.miniDesc,
-        discripition: job.discripition,
+        descripition: job.descripition,
         // posted: job.createdAt
         }
       },

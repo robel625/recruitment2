@@ -52,7 +52,7 @@ function VacancyList({ jobs }) {
   // const [posts, setPosts] = useState([]);
   // const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(5);
+  const [postsPerPage] = useState(10);
   
   useEffect(() => {
     setRealtimePosts(jobs)
@@ -101,7 +101,7 @@ function VacancyList({ jobs }) {
             <div className="p-5 h-screen w-screen md:w-auto bg-gray-100">
                  <div className='mb-2 w-auto h-auto flex  items-start justify-between'>
                     <div className=' text-2xl font-bold ' >Vacancy List</div>
-                    <motion.button
+                    {/* <motion.button
                         whileHover={{ scale: 1.01 }}
                         whileTap={{ scale: 0.99 }}
                         className="p-2 bg-blue-700 rounded-lg"
@@ -111,7 +111,10 @@ function VacancyList({ jobs }) {
                        }}
                        >
                         + New Vacancy
-                    </motion.button>
+                    </motion.button> */}
+                    <Link href={`/admin/vacancy/post`}>
+                      <button className="p-2 bg-blue-700 rounded-lg">+ New Vacancy</button>
+                    </Link>
                 </div>
                 <div className='mb-2 text-md  w-auto h-auto flex  items-start justify-between'>
                   <div className=' ' >
@@ -148,13 +151,13 @@ function VacancyList({ jobs }) {
                         {currentPosts && currentPosts.map((job) =>
                          <tr key={job._id} className="bg-white">
                            <td className="p-3 text-sm text-gray-700 whitespace-nowrap">
-                             <a href="#" className="font-bold text-blue-500 hover:underline">{job.descripition}</a>
+                             <a href="#" className="font-bold text-blue-500 hover:underline">{job.jobid}</a>
                            </td>
                            <td className="p-3 text-md font-semibold text-gray-700 whitespace-nowrap">
                              Position : {job.position}
                              <p className='text-xs font-normal'>{job.miniDesc}</p>
                            </td>
-                           <td className="p-3 text-sm text-gray-700 whitespace-nowrap text-center">{job.avalablity}</td>
+                           <td className="p-3 text-sm text-gray-700 whitespace-nowrap text-center">{job.availability}</td>
                            <td className="p-3 text-sm text-gray-700 whitespace-nowrap">
                            {job.status === "Active" ? ( <span
                              className="p-1.5 text-xs font-medium uppercase tracking-wider text-green-800 bg-green-200 rounded-lg bg-opacity-50 ">{job.status}
@@ -166,7 +169,9 @@ function VacancyList({ jobs }) {
                                 <Link href={`/${job._id}`}>
                                     <button className='ml-1 p-1.5 text-xs font-medium uppercase tracking-wider text-blue-800 bg-blue-200 rounded-md'>View</button>
                                 </Link>
+                                <Link href={`/admin/vacancy/${job._id}`}>
                                 <button className='ml-1 p-1.5 text-xs font-medium uppercase tracking-wider text-blue-800 bg-blue-200 rounded-md'>Edit</button>
+                                </Link>
                                 <button   onClick={() => deletePost(job)}
                                  className='ml-1 p-1.5 text-xs font-medium uppercase tracking-wider text-red-800 bg-red-200 rounded-md'>Delete</button>
                            </td>

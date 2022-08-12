@@ -1,22 +1,40 @@
 import mongoose from "mongoose"
 
 const jobSchema = mongoose.Schema({
+  jobid: {
+    type: String,
+  },
   position: {
     type: String,
   },
-  avalablity: {
+  company_name: {
     type: String,
   },
   status: {
     type: String,
   },
+  location: {
+    type: String,
+  },
+  availability: {
+    type: String,
+  },
+  level: {
+    type: String,
+  },
+  salary: {
+    type: String,
+  },
+  deadline: {
+    type: String,
+  },
   miniDesc: {
     type: String,
   },
-  discripition: {
+  descripition: {
     type: String,
   },
-  postedBy: {
+  postedby: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User"
   },

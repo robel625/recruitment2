@@ -42,10 +42,9 @@ export async function getServerSideProps(context) {
       jobs: jobs.map((job) => ({
         _id: job._id.toString(),
         position: job.position,
-        avalablity: job.avalablity,
+        availability: job.availability,
         status:job.status,
         miniDesc: job.miniDesc,
-        // discripition: job.descripition,
         posted: job.createdAt.toString()
 
       })),

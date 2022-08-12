@@ -7,14 +7,12 @@ connectDB()
 export default async (req, res) => {
   try {
     if (req.method === "POST") {
-      const { position, avalablity, status, miniDesc, desc, userid } = req.body
+      const { jobid, position, company_name, status, location, availability, level, salary,
+        deadline, miniDesc, descripition, postedby } = req.body
+        console.log("descripitionapi, postedbyapi", descripition, postedby)
       const newJob = await new Job({
-        position: position,
-        avalablity: avalablity,
-        status:status,
-        miniDesc: miniDesc,
-        discripition: desc,
-        postedBy: userid,
+        jobid, position, company_name, status, location, availability, level, salary,
+          deadline, miniDesc, descripition, postedby
       }).save()
 
       await newJob.save()

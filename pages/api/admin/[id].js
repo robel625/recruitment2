@@ -66,12 +66,13 @@ export default Authenticated(async (req, res) => {
   }
 
   if (method === "DELETE") {
-    try {
+    // try {
+      console.log("delete", id )
       await Application.deleteOne({ _id: new ObjectId(id) })
       return res.status(200).json({ message: "The Application has been deleted!!" });
-    } catch (error) {
-      return res.status(500).json(error);
-    }
+    // } catch (error) {
+    //   return res.status(500).json(error);
+    // }
   }
 
   if (req.method === "GET") {
