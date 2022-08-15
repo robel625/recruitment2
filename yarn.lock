@@ -2589,6 +2589,11 @@
   "resolved" "https://registry.npmjs.org/lodash.once/-/lodash.once-4.1.1.tgz"
   "version" "4.1.1"
 
+"lodash.stubfalse@^4.13.0":
+  "integrity" "sha512-1vc9QOsktR7ABav7ZQTXkv2xl9XYpe1rzQTzBmlFdkHLO5RXzJi7ugiX2KA0U3u8cFVlB7IYj4804xGo8EbdlA=="
+  "resolved" "https://registry.npmjs.org/lodash.stubfalse/-/lodash.stubfalse-4.13.0.tgz"
+  "version" "4.13.0"
+
 "loose-envify@^1.0.0", "loose-envify@^1.1.0", "loose-envify@^1.3.1", "loose-envify@^1.4.0":
   "integrity" "sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q=="
   "resolved" "https://registry.npmjs.org/loose-envify/-/loose-envify-1.4.0.tgz"

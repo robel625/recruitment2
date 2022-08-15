@@ -25,6 +25,7 @@
     "framer-motion": "^6.5.1",
     "js-cookie": "^3.0.1",
     "jsonwebtoken": "^8.5.1",
+    "lodash.stubfalse": "^4.13.0",
     "mongodb": "^4.8.0",
     "mongoose": "^6.4.5",
     "next": "12.2.2",
